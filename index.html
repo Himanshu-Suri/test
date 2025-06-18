@@ -38,31 +38,30 @@
       I build clean websites, and I love to learn.
     </p>
 
+    <!-- Email form -->
+    <section class="bg-white py-0">
+      <div class="max-w-xl mx-auto text-center px-4">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Stay in touch</h2>
+        
+        <form id="emailForm" class="flex flex-col md:flex-row gap-4 justify-center">
+          <input
+            id="emailInput"
+            type="email"
+            required
+            placeholder="Enter your email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            type="submit"
+            class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Submit
+          </button>
+        </form>
 
-        <section class="bg-white py-0">
-  <div class="max-w-xl mx-auto text-center px-4">
-    <h2 class="text-2xl font-bold mb-4 text-gray-800">Stay in touch</h2>
-    
-    <form id="emailForm" class="flex flex-col md:flex-row gap-4 justify-center">
-      <input
-        id="emailInput"
-        type="email"
-        required
-        placeholder="Enter your email"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <button
-        type="submit"
-        class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-      >
-        Submit
-      </button>
-    </form>
-
-    <p id="responseMsg" class="text-green-600 mt-4 hidden">Thanks! We’ll get in touch soon.</p>
-  </div>
-</section>
-
+        <p id="responseMsg" class="text-green-600 mt-4 hidden">Thanks! We’ll get in touch soon.</p>
+      </div>
+    </section>
 
   </div>
 </section>
@@ -73,31 +72,36 @@
   const responseMsg = document.getElementById("responseMsg");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // prevent page refresh
-    const email = emailInput.value;
-    
-    // Basic email check (optional)
+    e.preventDefault(); // stop form from reloading page
+
+    const email = emailInput.value.trim();
+
+    // Basic validation
     if (!email.includes("@")) {
       responseMsg.textContent = "Please enter a valid email.";
-      responseMsg.classList.remove("hidden");
+      responseMsg.classList.remove("hidden", "text-green-600");
       responseMsg.classList.add("text-red-600");
       return;
     }
 
-    // Show thank you message
+    // Show success message
     responseMsg.textContent = "Thanks! We’ll get in touch soon.";
     responseMsg.classList.remove("hidden", "text-red-600");
     responseMsg.classList.add("text-green-600");
 
-    // Clear the input
+    // Trigger a file download
+    const blob = new Blob([email], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "email.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Clear input
     emailInput.value = "";
   });
 </script>
-
-
-
-
-
 
 </body>
 </html>
