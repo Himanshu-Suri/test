@@ -66,46 +66,5 @@
   </div>
 </section>
 
-
- 
-
-
-<script>
-  const form = document.getElementById("emailForm");
-  const emailInput = document.getElementById("emailInput");
-  const responseMsg = document.getElementById("responseMsg");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // stop form from reloading page
-
-    const email = emailInput.value.trim();
-
-    // Basic validation
-    if (!email.includes("@")) {
-      responseMsg.textContent = "Please enter a valid email.";
-      responseMsg.classList.remove("hidden", "text-green-600");
-      responseMsg.classList.add("text-red-600");
-      return;
-    }
-
-    // Show success message
-    responseMsg.textContent = "Thanks! We’ll get in touch soon.";
-    responseMsg.classList.remove("hidden", "text-red-600");
-    responseMsg.classList.add("text-green-600");
-
-    // Trigger a file download
-    const blob = new Blob([email], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "email.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // Clear input
-    emailInput.value = "";
-  });
-</script>
-
 </body>
 </html>
