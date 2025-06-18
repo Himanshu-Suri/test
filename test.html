@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind Background</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-100 min-h-screen">
+<nav class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    
+    <!-- Logo / Brand -->
+    <div class="text-2xl font-bold text-blue-600">
+      MyPortfolio
+    </div>
+
+    <!-- Links -->
+    <ul class="flex space-x-6 text-gray-700 font-medium">
+      <li><a href="#home" class="hover:text-blue-600">Home</a></li>
+      <li><a href="#about" class="hover:text-blue-600">About</a></li>
+      <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
+      <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<section class="min-h-screen flex items-center justify-center bg-blue-100">
+  <div class="max-w-4xl bg-white p-8 rounded-lg shadow-md text-center">
+    <!-- Heading -->
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+      Hi, I am <span class="text-blue-600">Himanshu</span>
+    </h1>
+
+    <!-- Subheading -->
+    <p class="text-lg text-gray-600 mb-6">
+      I build clean websites, and I love to learn.
+    </p>
+
+
+        <section class="bg-white py-0">
+  <div class="max-w-xl mx-auto text-center px-4">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Stay in touch</h2>
+    
+    <form id="emailForm" class="flex flex-col md:flex-row gap-4 justify-center">
+      <input
+        id="emailInput"
+        type="email"
+        required
+        placeholder="Enter your email"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+      <button
+        type="submit"
+        class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+      >
+        Submit
+      </button>
+    </form>
+
+    <p id="responseMsg" class="text-green-600 mt-4 hidden">Thanks! We’ll get in touch soon.</p>
+  </div>
+</section>
+
+
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("emailForm");
+  const emailInput = document.getElementById("emailInput");
+  const responseMsg = document.getElementById("responseMsg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent page refresh
+    const email = emailInput.value;
+    
+    // Basic email check (optional)
+    if (!email.includes("@")) {
+      responseMsg.textContent = "Please enter a valid email.";
+      responseMsg.classList.remove("hidden");
+      responseMsg.classList.add("text-red-600");
+      return;
+    }
+
+    // Show thank you message
+    responseMsg.textContent = "Thanks! We’ll get in touch soon.";
+    responseMsg.classList.remove("hidden", "text-red-600");
+    responseMsg.classList.add("text-green-600");
+
+    // Clear the input
+    emailInput.value = "";
+  });
+</script>
+
+
+
+
+
+
+</body>
+</html>
